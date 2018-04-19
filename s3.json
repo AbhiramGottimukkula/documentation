@@ -1,0 +1,28 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Creating S3 bucket",
+    "Parameters": {
+        "Bucketname": {
+            "Type": "String",
+            "Description": "Bucket gets created with this name"   
+        }
+      },
+      "Resources": {
+        "MYS3": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "BucketName": {"Ref": "Bucketname"}
+            }
+        }
+    },
+    "Outputs": {
+        "CreatedSQS": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "MYS3",
+                    "WebsiteURL"
+                ]
+            }
+        }
+    }
+}

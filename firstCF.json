@@ -1,0 +1,66 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "creating first cloud front",
+    "Parameters": {
+        "DBUser": {
+          "Type": "String"
+        },
+        "DBPassword": {
+          "Type": "String"
+        },
+        "DBInstanceClass" : {
+          "Type" : "String"
+        },
+        "DBName" : {
+            "Type" : "String"
+        }
+      },
+      "Resources": {
+        "MYRDSDB": {
+          "Type": "AWS::RDS::DBInstance",
+          "Properties": {
+            "AllocatedStorage" : "100",              
+            "DBInstanceClass": { "Ref" : "DBInstanceClass" },
+            "Engine" : "MySQL",
+            "EngineVersion" : "5.5",                        
+            "MasterUsername" : { "Ref" : "DBUser" },
+            "MasterUserPassword" : { "Ref" : "DBPassword" },
+            "DBName" : { "Ref" : "DBName"}
+          }
+        },
+        "MYSQS": {
+            "Type": "AWS::SQS::Queue",
+            "Properties": {}
+        },
+        "MYS3": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {}
+        }
+    },
+    "Outputs" : {
+        "CreatedRDS" : {
+            "Value" : {
+                "Fn::GetAtt":[
+                    "MYRDSDB",
+                    "Endpoint.Address"
+                    ]
+            }
+        },
+        "CreatedS3" : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "MYSQS",
+                    "QueueName"
+                ]
+            }
+        },
+        "CreatedSQS" : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "MYS3",
+                    "WebsiteURL"
+                ]
+            }
+        }
+    }
+}

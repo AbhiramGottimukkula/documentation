@@ -1,0 +1,2 @@
+PACKER:
+Automate AMI Creation

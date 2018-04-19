@@ -1,0 +1,28 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Creating SQS Service",
+    "Parameters": {
+        "QueueName": {
+            "Type": "String",
+            "Description":"SQS gets created with this name"
+        }
+    },
+    "Resources": {
+        "MYSQS": {
+            "Type": "AWS::SQS::Queue",
+            "Properties": {
+                "QueueName":{"Ref": "QueueName"}
+            }
+        }
+    },
+    "Outputs" : {
+        "CreatedSQS" : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "MYSQS",
+                    "QueueName"
+                ]
+            }
+        }
+    }
+}
