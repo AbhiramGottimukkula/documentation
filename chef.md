@@ -1,13 +1,14 @@
-CHEF COMMANDS:
+CHEF:
 
-<!-- compiles rb file seperately-->
-chef-apply filename.rb
+Workstations:
+    A workstation is a computer running the chefDevelopmentKit that is used to author cookbooks,interact with Chef server ,and interact with the nodes.
+* knife
+    knife is a command-line tool that provides an interface between a local chef-repo and the chef server.
 
-<!-- generates cookbook -->
-chef generate cookbook <cookbookname>
-
-<!-- compiles cookbook -->
-chef-client --local-mode --runlist 'recipe[<cookbookname>]'
-
-<!-- put cookbooks in cookbooks directory -->
-chef  generate template <cookbookname> <filename.html>
+Chef-repo:
+    The chef-repo is a directory on your workstation that stores:
+    
+* Cookbooks
+* Roles
+* Databags
+* Environments
