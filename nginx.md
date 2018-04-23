@@ -1,7 +1,7 @@
 # NGINX:
 
 * source:
-    ** https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts
+    * https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts
 
 ## Introduction:
 Nginx is a high performance web server that is responsible for handling the load of some of the lagest sites on internet.It is especially good at handling many concurrent connections and excels at serving static content.
