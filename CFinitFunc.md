@@ -13,7 +13,7 @@
               "Configure":{
                   "commands" : {
                       "test" : {
-                          "command" : "mkdir abhiram",
+                          "command" : "mkdir dexter",
                           "cwd" : "/home/ubuntu/"
                       }
                   }
@@ -44,6 +44,9 @@
         }
       }
 ```
+* Above code creates a directory named dexter in "/home/ubuntu/"
+* To execute this code we need to install cfn-init and this service executes what ever function we write in "AWS::CloudFormation::Init"
+* takes aroud 15 min to execute
 
 ## using userdata
 
@@ -67,8 +70,7 @@
                "#!/bin/bash\n",
                "echo userdata script start\n", 
                "date\n",
-               "aws configure set default.region us-east-1a\n",
-                "aws s3 cp s3://extdev-ops/testscript.sh /home/ubuntu/\n",
+                "aws s3 cp s3://extdev-ops/testscript.sh /home/ubuntu/ --region=us-east-1\n"
                 "pwd\n",
                 "./home/ubuntu/testscript.sh"
             ]]}
@@ -76,3 +78,5 @@
         }
       }
 ```
+* In the Above code we are just using userdata field to execute s3 commands
+* takes 15 minutes to execute after instance is up!
