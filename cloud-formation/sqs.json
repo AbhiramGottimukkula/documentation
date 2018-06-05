@@ -1,28 +1,34 @@
 {
-    "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Creating SQS Service",
-    "Parameters": {
-        "QueueName": {
-            "Type": "String",
-            "Description":"SQS gets created with this name"
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "HR-TEST-sqs-1",
+	"Parameters": {
+		"queueName": {
+			"Description": "SQS Queue name",
+			"Type": "String",
+			"Default": "hackerrank"
+		}
+	},
+	"Resources": {
+		"SQSQueue":{
+			"Type" : "AWS::SQS::Queue",
+			"Properties" : {
+			   "QueueName": {"Ref":"queueName"}
+			}
+		}
+	},
+	"Outputs": {
+        "QueueARN" : {
+            "Description" : "ARN of newly created SQS Queue",
+            "Value" : { "Fn::GetAtt" : ["SQSQueue", "Arn"]}
+        },
+        "QueueName" : {
+            "Description" : "ARN of newly created SQS Queue",
+            "Value" : { "Fn::GetAtt" : ["SQSQueue", "QueueName"]}
+        },
+        "URL" : {
+            "Description" : "get url",
+            "Value" : { "Ref": "SQSQueue"}
         }
-    },
-    "Resources": {
-        "MYSQS": {
-            "Type": "AWS::SQS::Queue",
-            "Properties": {
-                "QueueName":{"Ref": "QueueName"}
-            }
-        }
-    },
-    "Outputs" : {
-        "CreatedSQS" : {
-            "Value" : {
-                "Fn::GetAtt" : [
-                    "MYSQS",
-                    "QueueName"
-                ]
-            }
-        }
-    }
+        
+	}
 }

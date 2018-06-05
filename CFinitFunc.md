@@ -70,7 +70,7 @@
                "#!/bin/bash\n",
                "echo userdata script start\n", 
                "date\n",
-                "aws s3 cp s3://extdev-ops/testscript.sh /home/ubuntu/ --region=us-east-1\n"
+                "aws s3 cp s3://hacker-rank-devops-dev/testscript.sh /home/ubuntu/ --region=us-east-1\n"
                 "pwd\n",
                 "./home/ubuntu/testscript.sh"
             ]]}

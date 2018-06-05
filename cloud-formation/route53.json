@@ -1,0 +1,50 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "HR-TEST-sqs-1",
+	"Parameters": {
+		"queueName": {
+			"Description": "SQS Queue name",
+			"Type": "String",
+			"Default": "hackerrank"
+		}
+	},
+	"Resources": {
+		"DNS": {
+            "Type": "AWS::Route53::HostedZone",
+            "Properties": {
+              "HostedZoneConfig": {
+                "Comment": "My hosted zone for preprod"
+              },
+              "Name": "preprod",
+              "VPCs": [{
+                "VPCId": {
+					"Ref": "vpc"
+				},
+                "VPCRegion": { "Ref" : "AWS::Region" }
+              }],
+              "HostedZoneTags" : [{
+                "Key": "Name",
+                "Value": "preprod"
+              }]
+            }
+          },
+        "myDNSRecord" : {
+            "Type" : "AWS::Route53::RecordSet",
+            "Properties" : {
+               "HostedZoneName" : { "Ref" : "DNS" },
+               "Name" : "mysql",
+               "Type" : "CNAME",
+               "TTL" : "900",
+               "ResourceRecords" : [
+                  "msqlendpoint"
+               ]
+            }
+        }
+	},
+	"Outputs": {
+        "QueueARN" : {
+            "Description" : "created hosted zone name",
+            "Value" : { "Fn::GetAtt" : ["DNS", "NameServers"]}
+        }
+	}
+}

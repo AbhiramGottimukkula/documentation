@@ -55,3 +55,23 @@
 
 * ->choose one public subnet and create a NAT gateway
 * ->go to private subnet and add route from 0.0.0.0/0 to natgateway-id
+
+# point to remember:
+
+* The first four IP addresses and the last IP address in each subnet CIDR block are not available for you to use, and cannot be assigned to an instance. 
+
+* Private Address Space
+
+    * The Internet Assigned Numbers Authority (IANA) has reserved the
+        following three blocks of the IP address space for private internets:
+        
+        * 10.0.0.0        -   10.255.255.255  (10/8 prefix)
+        * 172.16.0.0      -   172.31.255.255  (172.16/12 prefix)
+        * 192.168.0.0     -   192.168.255.255 (192.168/16 prefix)
+
+   * We will refer to the first block as "24-bit block", the second as
+   "20-bit block", and to the third as "16-bit" block. Note that (in
+   pre-CIDR notation) the first block is nothing but a single class A
+   network number, while the second block is a set of 16 contiguous
+   class B network numbers, and third block is a set of 256 contiguous
+   class C network numbers.
